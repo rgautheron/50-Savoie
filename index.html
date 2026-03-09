@@ -770,5 +770,32 @@ function toggleAcc(item) {
   }
 }
 </script>
+
+<script>
+/* ── Wix iframe auto-resize ── */
+function sendHeightToWix() {
+  var h = document.documentElement.scrollHeight || document.body.scrollHeight;
+  window.parent.postMessage({ type: "iwanttochangeheight", value: h }, "*");
+  // Also try Wix's newer format
+  window.parent.postMessage(JSON.stringify({ type: "resize", value: h }), "*");
+}
+// Send on load
+window.addEventListener('load', function() {
+  sendHeightToWix();
+  // Re-send after fonts/images load
+  setTimeout(sendHeightToWix, 500);
+  setTimeout(sendHeightToWix, 1500);
+});
+// Send on any click (accordion/tabs change content height)
+document.addEventListener('click', function() {
+  setTimeout(sendHeightToWix, 350);
+});
+// Observe DOM mutations (accordion open/close)
+if (window.MutationObserver) {
+  new MutationObserver(function() {
+    setTimeout(sendHeightToWix, 200);
+  }).observe(document.body, { childList: true, subtree: true, attributes: true });
+}
+</script>
 </body>
 </html>
