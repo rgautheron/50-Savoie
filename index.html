@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emploi des 50+ en Savoie — L'expérience, un capital d'avenir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:   #114D61;
+    --cyan:   #00B5DC;
+    --red:    #DE2212;
+    --pink:   #FF0068;
+    --yellow: #FDC311;
+    --green:  #96BF0D;
+    --cream:  #f5f5f5;
+    --white:  #ffffff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Nunito',sans-serif; color:#1a1a1a; background:var(--cream); overflow-x:hidden; }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(30,30,30,0.97); backdrop-filter:blur(12px);
+    padding:0 5%; height:64px;
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom:1px solid rgba(255,255,255,0.07);
+  }
+  .nav-logo { font-weight:900; font-size:1.1rem; color:white; display:flex; align-items:center; gap:10px; }
+  .nav-logo .n50 { color:var(--pink); }
+  .nav-badge { background:var(--pink); color:white; font-size:0.62rem; font-weight:900; padding:2px 9px; border-radius:20px; letter-spacing:.06em; text-transform:uppercase; }
+  .nav-links { display:flex; gap:6px; list-style:none; }
+  .nav-links a { color:rgba(255,255,255,.65); text-decoration:none; font-size:.87rem; font-weight:700; padding:6px 14px; border-radius:7px; transition:all .2s; }
+  .nav-links a:hover { color:white; background:rgba(255,255,255,.1); }
+
+  /* HERO */
+  .hero {
+    min-height:100vh;
+    background:linear-gradient(160deg,#111 0%,#2a2a2a 40%,#686868 78%,#aaa 100%);
+    position:relative; display:flex; align-items:center;
+    padding:100px 5% 60px; overflow:hidden;
+  }
+  .hero-grid {
+    position:absolute; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:44px 44px;
+  }
+  .hero-deco {
+    position:absolute; right:5%; top:50%; transform:translateY(-50%);
+    width:360px; height:360px; border-radius:50%;
+    background:radial-gradient(circle,rgba(255,0,104,.1),transparent 70%);
+    border:1px solid rgba(255,255,255,.07);
+    display:flex; align-items:center; justify-content:center; z-index:1;
+  }
+  .hero-deco-inner { font-size:7rem; font-weight:900; color:rgba(255,255,255,.04); line-height:1; }
+
+  .hero-content { position:relative; z-index:2; max-width:680px; animation:fadeUp .7s ease both; }
+
+  .hero-tag {
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:.82rem; font-weight:800; padding:7px 18px; border-radius:30px;
+    margin-bottom:26px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14);
+    letter-spacing:.02em;
+  }
+  .hero-tag::before { content:'●'; font-size:.45rem; color:var(--red); animation:blink 2s ease-in-out infinite; }
+  .tag-nat { color:var(--red); }
+  .tag-sep { color:rgba(255,255,255,.3); margin:0 2px; }
+  .tag-sav { color:white; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+  .hero h1 { font-size:clamp(2.5rem,5vw,3.9rem); font-weight:900; line-height:1.08; margin-bottom:8px; }
+  .h1-white { color:white; display:block; }
+  .h1-pink  { color:var(--pink); display:block; }
+
+  .hero-sub { font-size:1.05rem; color:rgba(255,255,255,.58); line-height:1.7; margin:22px 0 40px; max-width:520px; font-weight:400; }
+
+  .hero-cta { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-employer {
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--navy); color:white;
+    padding:15px 30px; border-radius:10px;
+    font-family:'Nunito',sans-serif; font-weight:800; font-size:.95rem;
+    text-decoration:none; transition:all .25s;
+  }
+  .btn-employer:hover { background:#0e3f51; transform:translateY(-2px); box-shadow:0 8px 24px rgba(17,77,97,.45); }
+  .btn-senior {
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--cyan); color:white;
+    padding:15px 30px; border-radius:10px;
+    font-family:'Nunito',sans-serif; font-weight:800; font-size:.95rem;
+    text-decoration:none; transition:all .25s;
+  }
+  .btn-senior:hover { background:#00a0c5; transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,181,220,.4); }
+
+  /* STATS */
+  .hero-stats { position:relative; z-index:2; display:flex; gap:4px; margin-top:52px; flex-wrap:wrap; animation:fadeUp .7s .2s ease both; }
+  .stat-card {
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.11);
+    backdrop-filter:blur(8px); padding:16px 22px; border-radius:12px;
+    min-width:150px; flex:1; transition:all .3s;
+  }
+  .stat-card:hover { background:rgba(255,255,255,.12); transform:translateY(-3px); }
+  .stat-num   { font-size:1.55rem; font-weight:900; color:var(--pink); line-height:1; margin-bottom:5px; }
+  .stat-label { font-size:.74rem; color:rgba(255,255,255,.5); line-height:1.4; }
+
+  /* ALERT BAND */
+  .alert-band { background:linear-gradient(135deg,#111 0%,#222 100%); padding:24px 5%; border-bottom:3px solid var(--pink); }
+  .alert-inner { max-width:1200px; margin:0 auto; display:flex; align-items:flex-start; gap:16px; flex-wrap:wrap; }
+  .alert-icon { background:rgba(255,0,104,.14); border:1px solid rgba(255,0,104,.28); color:var(--pink); width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; margin-top:2px; }
+  .alert-text h3 { color:white; font-size:.93rem; font-weight:800; margin-bottom:10px; }
+  .alert-pills { display:flex; gap:8px; flex-wrap:wrap; }
+  .alert-pill { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.11); color:rgba(255,255,255,.78); font-size:.77rem; font-weight:600; padding:5px 13px; border-radius:6px; display:flex; align-items:center; gap:6px; }
+  .alert-pill .dot { width:6px; height:6px; background:var(--pink); border-radius:50%; flex-shrink:0; }
+
+  /* SECTION LABEL */
+  .section-label { display:inline-flex; align-items:center; gap:8px; font-size:.71rem; font-weight:900; letter-spacing:.15em; text-transform:uppercase; color:var(--pink); margin-bottom:12px; }
+  .section-label::before { content:''; width:20px; height:2px; background:var(--pink); display:block; }
+  .section-h2  { font-size:clamp(1.8rem,3.5vw,2.5rem); font-weight:900; color:var(--navy); line-height:1.2; margin-bottom:10px; }
+  .section-intro { font-size:1rem; color:#666; line-height:1.7; max-width:600px; margin-bottom:44px; }
+
+  /* SOLUTIONS */
+  #solutions { background:var(--cream); padding:72px 5%; }
+  #solutions .inner { max-width:1200px; margin:0 auto; }
+
+  /* TABS */
+  .tabs-wrapper { background:white; border-radius:20px; box-shadow:0 4px 40px rgba(0,0,0,.08); overflow:hidden; border:1px solid #e0e0e0; }
+  .tabs-header { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #e0e0e0; }
+  .tab-btn { padding:22px 30px; background:#f8f8f8; border:none; cursor:pointer; display:flex; align-items:center; gap:14px; transition:all .3s; border-bottom:3px solid transparent; }
+  .tab-btn:first-child { border-right:1px solid #e0e0e0; }
+  .tab-btn.active          { background:white; border-bottom-color:var(--navy); }
+  .tab-btn.active.senior-t { background:white; border-bottom-color:var(--cyan); }
+  .tab-icon { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; background:#f0f0f0; transition:background .3s; }
+  .tab-btn.active           .tab-icon { background:rgba(17,77,97,.1); }
+  .tab-btn.active.senior-t  .tab-icon { background:rgba(0,181,220,.12); }
+  .tab-info { text-align:left; }
+  .tab-info strong { display:block; font-weight:800; font-size:1rem; color:var(--navy); margin-bottom:3px; }
+  .tab-info span   { font-size:.8rem; color:#888; }
+  .tab-pane { display:none; }
+  .tab-pane.active { display:block; }
+
+  /* ACCORDION */
+  .tab-body { padding:40px; }
+  .acc-title { font-size:1rem; font-weight:800; color:var(--navy); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+  .acc-title::after { content:''; flex:1; height:1px; background:#e8e8e8; }
+  .acc-item { border:1px solid #e0e0e0; border-radius:12px; margin-bottom:10px; overflow:hidden; transition:box-shadow .3s; }
+  .acc-item:hover { box-shadow:0 4px 16px rgba(0,0,0,.07); }
+  .acc-header { padding:17px 20px; display:flex; align-items:center; gap:14px; cursor:pointer; background:white; transition:background .2s; user-select:none; }
+  .acc-header:hover { background:#fafafa; }
+  .acc-item.open .acc-header { background:#f8f8f8; border-bottom:1px solid #e0e0e0; }
+  .age-badge { font-weight:900; font-size:.82rem; padding:4px 14px; border-radius:30px; white-space:nowrap; flex-shrink:0; }
+  .ab-navy   { background:rgba(17,77,97,.1);   color:var(--navy); }
+  .ab-cyan   { background:rgba(0,181,220,.12);  color:#007fa0; }
+  .ab-amber  { background:rgba(253,195,17,.15); color:#a07000; }
+  .ab-purple { background:rgba(124,58,237,.1);  color:#7c3aed; }
+  .acc-preview { flex:1; font-size:.9rem; font-weight:700; color:#333; }
+  .acc-amount  { font-weight:900; font-size:.93rem; color:var(--navy); white-space:nowrap; }
+  .acc-chevron { font-size:.75rem; color:#aaa; transition:transform .3s; flex-shrink:0; }
+  .acc-item.open .acc-chevron { transform:rotate(180deg); }
+  .acc-body { display:none; padding:20px; background:#fafafa; }
+  .acc-item.open .acc-body { display:block; }
+
+  /* DEVICE CARDS */
+  .device-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; }
+  .device-card { background:white; border:1px solid #e0e0e0; border-radius:10px; padding:18px 20px; transition:all .2s; display:flex; flex-direction:column; }
+  .device-card:hover { border-color:var(--navy); box-shadow:0 4px 12px rgba(17,77,97,.1); transform:translateY(-2px); }
+  .device-card h4 { font-size:.92rem; font-weight:800; color:var(--navy); margin-bottom:6px; }
+  .device-card p  { font-size:.8rem; color:#666; line-height:1.5; margin-bottom:10px; flex:1; }
+  .device-tag { display:inline-block; font-size:.7rem; font-weight:800; padding:3px 10px; border-radius:20px; background:rgba(17,77,97,.08); color:var(--navy); border:1px solid rgba(17,77,97,.15); margin-bottom:8px; }
+  .dt-cyan  { background:rgba(0,181,220,.08);  color:#007fa0; border-color:rgba(0,181,220,.2); }
+  .dt-amber { background:rgba(253,195,17,.1);  color:#a07000; border-color:rgba(253,195,17,.3); }
+  .device-source { display:inline-flex; align-items:center; gap:4px; font-size:.74rem; font-weight:800; color:var(--pink); text-decoration:none; border-bottom:1px solid rgba(255,0,104,.22); padding-bottom:1px; margin-bottom:6px; transition:gap .2s; }
+  .device-source:hover { gap:7px; color:var(--red); }
+  .btn-savoir-plus { display:inline-flex; align-items:center; gap:6px; margin-top:8px; font-size:.78rem; font-weight:800; padding:8px 16px; border-radius:8px; text-decoration:none; background:var(--navy); color:white; transition:all .2s; align-self:flex-start; }
+  .btn-savoir-plus:hover { background:#0e3f51; transform:translateY(-1px); }
+
+  /* DIVIDER */
+  .divider { height:1px; background:#e8e8e8; margin:36px 0; }
+
+  /* CONTRATS */
+  .contracts-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .contract-card { background:white; border:1.5px solid #e0e0e0; border-radius:14px; padding:26px; transition:all .3s; position:relative; overflow:hidden; }
+  .contract-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--navy); }
+  .cc-cyan::before   { background:var(--cyan); }
+  .cc-purple::before { background:#7c3aed; }
+  .contract-card:hover        { box-shadow:0 8px 30px rgba(0,0,0,.1); transform:translateY(-4px); border-color:var(--navy); }
+  .cc-cyan:hover   { border-color:var(--cyan); }
+  .cc-purple:hover { border-color:#7c3aed; }
+  .contract-icon { font-size:1.5rem; margin-bottom:12px; }
+  .contract-card h4 { font-size:1rem; font-weight:800; color:var(--navy); margin-bottom:4px; }
+  .contract-subtitle { font-size:.72rem; color:var(--navy); font-weight:800; text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px; }
+  .cc-cyan   .contract-subtitle { color:#007fa0; }
+  .cc-purple .contract-subtitle { color:#7c3aed; }
+  .contract-desc { font-size:.82rem; color:#666; line-height:1.6; margin-bottom:12px; }
+  .contract-detail { font-size:.78rem; color:#444; display:flex; align-items:flex-start; gap:8px; margin-bottom:5px; line-height:1.4; }
+  .contract-detail::before { content:'→'; color:var(--navy); font-weight:900; flex-shrink:0; }
+  .cc-cyan   .contract-detail::before { color:var(--cyan); }
+  .cc-purple .contract-detail::before { color:#7c3aed; }
+  .btn-en-savoir { display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:.78rem; font-weight:800; padding:8px 16px; border-radius:8px; text-decoration:none; background:var(--pink); color:white; transition:all .2s; }
+  .btn-en-savoir:hover { background:var(--red); transform:translateY(-1px); }
+
+  /* LABELS */
+  .labels-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .label-card { background:white; border:1px solid #e0e0e0; border-radius:12px; padding:24px; text-align:center; transition:all .2s; }
+  .label-card:hover { box-shadow:0 4px 20px rgba(0,0,0,.08); transform:translateY(-2px); }
+  .label-emoji { font-size:2rem; margin-bottom:10px; display:block; }
+  .label-card h4 { font-size:.95rem; font-weight:800; color:var(--navy); margin-bottom:8px; }
+  .label-card p  { font-size:.78rem; color:#666; line-height:1.5; margin-bottom:14px; }
+  .btn-small { display:inline-flex; align-items:center; gap:6px; font-size:.78rem; font-weight:800; padding:7px 16px; border-radius:7px; text-decoration:none; background:var(--navy); color:white; transition:all .2s; }
+  .btn-small:hover { background:#0e3f51; }
+
+  /* SENIOR TAB */
+  .senior-content { padding:40px; }
+  .senior-intro { font-size:.95rem; color:#666; margin-bottom:28px; max-width:600px; line-height:1.7; }
+  .senior-cols  { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .senior-col-h { font-size:.82rem; font-weight:900; text-transform:uppercase; letter-spacing:.08em; color:var(--cyan); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .senior-col-h::before { content:''; width:14px; height:2px; background:currentColor; }
+  .sch-navy { color:var(--navy); }
+  .senior-item { background:#f8f8f8; border:1px solid #e0e0e0; border-radius:10px; padding:16px 18px; margin-bottom:10px; display:flex; gap:14px; transition:all .2s; }
+  .senior-item:hover      { background:white; border-color:var(--cyan); box-shadow:0 4px 12px rgba(0,181,220,.1); }
+  .si-navy:hover { border-color:var(--navy); box-shadow:0 4px 12px rgba(17,77,97,.1); }
+  .senior-item-icon { font-size:1.3rem; flex-shrink:0; margin-top:2px; }
+  .senior-item-text h4 { font-size:.88rem; font-weight:800; color:var(--navy); margin-bottom:4px; }
+  .senior-item-text p  { font-size:.78rem; color:#666; line-height:1.5; }
+
+  /* DIAGNOSTIC */
+  #diagnostic { background:linear-gradient(160deg,#111 0%,#2e2e2e 45%,#5c5c5c 100%); padding:80px 5%; }
+  .diag-inner { max-width:1200px; margin:0 auto; }
+  .diag-label { display:inline-flex; align-items:center; gap:8px; font-size:.71rem; font-weight:900; letter-spacing:.15em; text-transform:uppercase; color:#FF0068; margin-bottom:12px; }
+  .diag-label::before { content:''; width:20px; height:2px; background:#FF0068; display:block; }
+  .diag-h2    { font-size:clamp(1.8rem,3.5vw,2.5rem); font-weight:900; color:white; line-height:1.2; margin-bottom:10px; }
+  .diag-intro { font-size:1rem; color:rgba(255,255,255,.5); line-height:1.7; max-width:580px; margin-bottom:44px; }
+  .diag-grid  { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .diag-card  { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.11); border-radius:16px; padding:30px; transition:all .3s; position:relative; overflow:hidden; display:flex; flex-direction:column; }
+  .diag-card:hover { background:rgba(255,255,255,.1); transform:translateY(-4px); }
+  .diag-num   { font-size:3rem; font-weight:900; color:rgba(255,255,255,.05); position:absolute; right:18px; top:12px; line-height:1; }
+  .diag-tbadge { display:inline-flex; align-items:center; gap:5px; font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; padding:4px 12px; border-radius:20px; margin-bottom:16px; }
+  .dtb-yellow { background:rgba(253,195,17,.15); color:var(--yellow); border:1px solid rgba(253,195,17,.3); }
+  .dtb-cyan   { background:rgba(0,181,220,.15);  color:#7adaf0;       border:1px solid rgba(0,181,220,.3); }
+  .dtb-green  { background:rgba(150,191,13,.15); color:#c0e060;       border:1px solid rgba(150,191,13,.3); }
+  .diag-card h3 { font-size:1.1rem; font-weight:800; color:white; margin-bottom:10px; }
+  .diag-card p  { font-size:.82rem; color:rgba(255,255,255,.48); line-height:1.65; margin-bottom:20px; flex:1; }
+  .diag-footer  { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+  .diag-confirm { font-size:.74rem; color:rgba(255,255,255,.32); }
+  .btn-acceder  { display:inline-flex; align-items:center; gap:6px; font-size:.8rem; font-weight:800; padding:8px 18px; border-radius:8px; text-decoration:none; background:var(--pink); color:white; transition:all .2s; white-space:nowrap; }
+  .btn-acceder:hover { background:var(--red); transform:translateY(-1px); }
+  .diag-article { margin-top:24px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.11); border-radius:12px; padding:22px 28px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .diag-article-text { flex:1; min-width:240px; }
+  .diag-article-text h4 { font-size:.95rem; font-weight:800; color:white; margin-bottom:5px; }
+  .diag-article-text p  { font-size:.8rem; color:rgba(255,255,255,.42); margin:0; }
+  .btn-lire { display:inline-flex; align-items:center; gap:8px; font-size:.85rem; font-weight:800; padding:11px 22px; border-radius:8px; text-decoration:none; white-space:nowrap; border:1.5px solid #FF0068; color:#FF0068; transition:all .2s; }
+  .btn-lire:hover { background:#FF0068; color:white; }
+
+  /* FOOTER */
+  footer { background:#0d0d0d; padding:56px 5% 32px; }
+  .footer-inner { max-width:1200px; margin:0 auto; }
+  .footer-top { display:flex; gap:48px; flex-wrap:wrap; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.07); margin-bottom:36px; }
+  .footer-brand { flex:1; min-width:220px; }
+  .footer-logo  { font-size:1.2rem; font-weight:900; color:white; margin-bottom:10px; }
+  .fl-50 { color:var(--pink); }
+  .footer-brand p { font-size:.8rem; color:rgba(255,255,255,.38); line-height:1.7; max-width:260px; }
+  .footer-contact { flex:1; min-width:200px; }
+  .footer-contact h4 { font-size:.7rem; font-weight:900; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.32); margin-bottom:14px; }
+  .contact-info { font-size:.82rem; color:rgba(255,255,255,.62); line-height:1.9; }
+  .contact-info strong { color:white; font-weight:800; display:block; }
+  .contact-info a { color:var(--pink); text-decoration:none; font-weight:700; transition:color .2s; }
+  .contact-info a:hover { color:var(--red); }
+  .footer-partners { width:100%; }
+  .footer-partners h4 { font-size:.68rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.28); margin-bottom:18px; }
+  .logos-row { display:flex; align-items:center; flex-wrap:wrap; }
+  .logo-box { background:white; border-radius:8px; padding:8px 16px; margin:4px; height:48px; display:flex; align-items:center; justify-content:center; transition:all .2s; min-width:90px; }
+  .logo-box:hover { transform:scale(1.04); box-shadow:0 4px 16px rgba(0,0,0,.3); }
+  .logo-box img { height:32px; width:auto; object-fit:contain; max-width:130px; }
+  .logo-text { font-size:.63rem; font-weight:900; color:var(--navy); text-align:center; line-height:1.2; }
+  .footer-bottom { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .footer-bottom p { font-size:.74rem; color:rgba(255,255,255,.2); }
+  .footer-bottom a { color:rgba(255,255,255,.28); text-decoration:none; font-size:.74rem; font-weight:700; transition:color .2s; }
+  .footer-bottom a:hover { color:rgba(255,255,255,.6); }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  /* RESPONSIVE */
+  @media(max-width:900px) {
+    .contracts-grid,.labels-grid,.diag-grid { grid-template-columns:1fr; }
+    .senior-cols { grid-template-columns:1fr; }
+    .hero-deco   { display:none; }
+    .tab-body,.senior-content { padding:24px; }
+  }
+  @media(max-width:600px) {
+    .tabs-header { grid-template-columns:1fr; }
+    .tab-btn:first-child { border-right:none; border-bottom:1px solid #e0e0e0; }
+    .hero-stats { flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Emploi <span class="n50">50+</span> Savoie <span class="nav-badge">2026</span></div>
+  <ul class="nav-links">
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#diagnostic">Diagnostic</a></li>
+    <li><a href="#labels">Labels</a></li><li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-deco"><div class="hero-deco-inner">50+</div></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="tag-nat">Mobilisation nationale</span>
+      <span class="tag-sep">—</span>
+      <span class="tag-sav">Savoie 2026</span>
+    </div>
+    <h1>
+      <span class="h1-white">L'expérience,</span>
+      <span class="h1-pink">un capital d'avenir.</span>
+    </h1>
+    <p class="hero-sub">En Savoie, des solutions concrètes pour recruter les talents de plus de 50 ans et les accompagner vers un emploi durable. Aides financières, contrats adaptés, outils gratuits.</p>
+    <div class="hero-cta">
+      <a href="#solutions" class="btn-employer" onclick="setTimeout(function(){openTab('employer')},100)">🏢 Je suis employeur →</a>
+      <a href="#solutions" class="btn-senior"   onclick="setTimeout(function(){openTab('senior')},100)">👤 J'ai 50+ ans →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card"><div class="stat-num">1/3</div><div class="stat-label">Des actifs auront<br>+60 ans en 2040</div></div>
+      <div class="stat-card"><div class="stat-num">38%</div><div class="stat-label">Des 60-64 ans<br>en emploi en France</div></div>
+      <div class="stat-card"><div class="stat-num">8 000€</div><div class="stat-label">D'aide max à l'embauche<br>en Savoie (AURA)</div></div>
+      <div class="stat-card"><div class="stat-num">4 lois</div><div class="stat-label">Nouvelles obligations<br>depuis oct. 2025</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ALERT BAND -->
+<div class="alert-band">
+  <div class="alert-inner">
+    <div class="alert-icon">⚡</div>
+    <div class="alert-text">
+      <h3>Nouvelles obligations employeurs — Loi du 24 octobre 2025</h3>
+      <div class="alert-pills">
+        <span class="alert-pill"><span class="dot"></span>Index Senior obligatoire (+300 salariés)</span>
+        <span class="alert-pill"><span class="dot"></span>Négociation seniors tous les 4 ans</span>
+        <span class="alert-pill"><span class="dot"></span>Entretien parcours avant 60 ans</span>
+        <span class="alert-pill"><span class="dot"></span>Pénalité financière en cas de non-conformité</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOLUTIONS -->
+<div id="solutions">
+  <div class="inner">
+    <div class="section-label">Solutions &amp; dispositifs</div>
+    <h2 class="section-h2">Les ressources pour agir</h2>
+    <p class="section-intro">Que vous soyez employeur ou demandeur d'emploi de 50+, retrouvez ici tous les dispositifs disponibles en Savoie.</p>
+
+    <div class="tabs-wrapper">
+      <div class="tabs-header">
+        <button id="btn-employer" class="tab-btn active"   onclick="openTab('employer')">
+          <div class="tab-icon">🏢</div>
+          <div class="tab-info"><strong>Je suis employeur</strong><span>Aides, contrats, labels et obligations</span></div>
+        </button>
+        <button id="btn-senior"   class="tab-btn senior-t" onclick="openTab('senior')">
+          <div class="tab-icon">💼</div>
+          <div class="tab-info"><strong>J'ai 50+ ans et je cherche un emploi</strong><span>Formation, reconversion, contrats adaptés</span></div>
+        </button>
+      </div>
+
+      <!-- ONGLET EMPLOYEUR -->
+      <div id="pane-employer" class="tab-pane active">
+        <div class="tab-body">
+
+          <div class="acc-title">💶 Aides financières au recrutement</div>
+
+          <!-- 45+ -->
+          <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this.parentElement)">
+              <span class="age-badge ab-navy">45 ans +</span>
+              <span class="acc-preview">Contrat de professionnalisation</span>
+              <span class="acc-amount">2 000 €</span>
+              <span class="acc-chevron">▼</span>
+            </div>
+            <div class="acc-body">
+              <div class="device-cards">
+                <div class="device-card">
+                  <h4>Contrat de professionnalisation</h4>
+                  <p>Aide de l'État de 2 000 € pour le recrutement d'un demandeur d'emploi de 45 ans et plus. Permet d'intégrer une formation qualifiante pendant le contrat.</p>
+                  <span class="device-tag">National — France Travail</span>
+                  <a href="https://entreprendre.service-public.fr/vosdroits/F35391" target="_blank" class="device-source">↗ Source officielle</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 50+ -->
+          <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this.parentElement)">
+              <span class="age-badge ab-cyan">50 ans +</span>
+              <span class="acc-preview">Programme Atout Senior</span>
+              <span class="acc-amount">Parcours financé</span>
+              <span class="acc-chevron">▼</span>
+            </div>
+            <div class="acc-body">
+              <div class="device-cards">
+                <div class="device-card">
+                  <h4>Atout Senior — France Travail AURA</h4>
+                  <p>Parcours en alternance de 8 mois (4 mois de formation certifiante + 4 mois en entreprise). Financement partagé : CPF du candidat + contribution entreprise + abondement France Travail.</p>
+                  <span class="device-tag dt-cyan">Auvergne-Rhône-Alpes</span>
+                  <a href="https://www.francetravail.fr/region/auvergne-rhone-alpes/employeurs/atout-senior-et-si-le-prochain-t.html" target="_blank" class="device-source">↗ France Travail AURA</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 55+ -->
+          <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this.parentElement)">
+              <span class="age-badge ab-amber">55 ans +</span>
+              <span class="acc-preview">Pack Relocalisation AURA</span>
+              <span class="acc-amount">6 000 €</span>
+              <span class="acc-chevron">▼</span>
+            </div>
+            <div class="acc-body">
+              <div class="device-cards">
+                <div class="device-card">
+                  <h4>Pack Relocalisation — Région AURA</h4>
+                  <p>Subvention de 6 000 € pour l'embauche d'un senior de 55 ans+ en CDI ou CDD +12 mois (min. 50% temps plein). Réservé aux projets industriels de relocalisation ou « Fabriqué en France ».</p>
+                  <span class="device-tag dt-amber">⚠️ Industrie / Relocalisation uniquement</span>
+                  <a href="https://www.auvergnerhonealpes.fr/aides/pack-relocalisation-trouver-les-competences" target="_blank" class="device-source">↗ Région AURA</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 57+ -->
+          <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this.parentElement)">
+              <span class="age-badge ab-purple">57 ans +</span>
+              <span class="acc-preview">CDI Inclusion / CDD de Reconversion</span>
+              <span class="acc-amount">Contrats adaptés</span>
+              <span class="acc-chevron">▼</span>
+            </div>
+            <div class="acc-body">
+              <div class="device-cards">
+                <div class="device-card">
+                  <h4>CDI Inclusion Senior</h4>
+                  <p>Pour les 57 ans+ en grande fragilité. Via les structures SIAE, accompagnement renforcé jusqu'à la retraite.</p>
+                  <span class="device-tag">Via structures SIAE</span>
+                  <a href="https://communaute.inclusion.beta.gouv.fr/forum/cdi-inclusion-tout-ce-que-vous-devez-savoir-123/" target="_blank" class="device-source">↗ Inclusion.beta.gouv.fr</a>
+                </div>
+                <div class="device-card">
+                  <h4>CDD de Reconversion</h4>
+                  <p>Nouveau depuis janvier 2026. Remplace le CDD Senior. Durée 6 à 12 mois (jusqu'à 36 mois). Combine mise en situation pro et formation certifiante.</p>
+                  <span class="device-tag">En vigueur jan. 2026</span>
+                  <a href="https://entreprendre.service-public.gouv.fr/actualites/A18564" target="_blank" class="device-source">↗ Service-public.fr</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 60+ -->
+          <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this.parentElement)">
+              <span class="age-badge ab-navy">60 ans +</span>
+              <span class="acc-preview">CVE + Pack Relocalisation AURA</span>
+              <span class="acc-amount">8 000 € + exonérations</span>
+              <span class="acc-chevron">▼</span>
+            </div>
+            <div class="acc-body">
+              <div class="device-cards">
+                <div class="device-card">
+                  <h4>CVE — Contrat de Valorisation de l'Expérience</h4>
+                  <p>CDI pour les 60 ans+ (ou 57 ans par accord de branche). Se termine automatiquement à la retraite à taux plein. Exonération patronale de 40% sur l'indemnité de mise à la retraite.</p>
+                  <span class="device-tag">★ Dispositif phare 2026</span>
+                  <a href="https://travail-emploi.gouv.fr/le-contrat-de-valorisation-de-lexperience-cve" target="_blank" class="device-source">↗ Travail-emploi.gouv.fr</a>
+                </div>
+                <div class="device-card">
+                  <h4>Pack Relocalisation AURA (60 ans+)</h4>
+                  <p>Montant porté à 8 000 € pour les profils de 60 ans et plus. Mêmes conditions que le palier 55+.</p>
+                  <span class="device-tag dt-amber">⚠️ Industrie / Relocalisation uniquement</span>
+                  <a href="https://www.auvergnerhonealpes.fr/aides/pack-relocalisation-trouver-les-competences" target="_blank" class="device-source">↗ Région AURA</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- CONTRATS -->
+          <div class="acc-title">📋 Les contrats clés en un coup d'œil</div>
+          <div class="contracts-grid">
+            <div class="contract-card">
+              <div class="contract-icon">⭐</div>
+              <h4>CVE</h4>
+              <div class="contract-subtitle">Contrat de Valorisation de l'Expérience</div>
+              <p class="contract-desc">Le nouveau CDI senior, dispositif phare de la loi d'octobre 2025.</p>
+              <div class="contract-detail">Pour les 60 ans+ (ou 57 ans via accord de branche)</div>
+              <div class="contract-detail">Fin automatique à la retraite à taux plein</div>
+              <div class="contract-detail">Exonération 40% cotisation patronale</div>
+              <div class="contract-detail">Expérimental jusqu'en 2030</div>
+              <a href="https://travail-emploi.gouv.fr/le-contrat-de-valorisation-de-lexperience-cve" target="_blank" class="btn-en-savoir">En savoir plus →</a>
+            </div>
+            <div class="contract-card cc-cyan">
+              <div class="contract-icon">🔄</div>
+              <h4>CDD de Reconversion</h4>
+              <div class="contract-subtitle">Remplace le CDD Senior (supprimé)</div>
+              <p class="contract-desc">Le nouveau contrat de transition pour mobilités et reconversions.</p>
+              <div class="contract-detail">En vigueur depuis le 1er janvier 2026</div>
+              <div class="contract-detail">Durée 6 à 12 mois (jusqu'à 36 mois)</div>
+              <div class="contract-detail">Formation certifiante intégrée</div>
+              <div class="contract-detail">Suspend sans rompre le contrat d'origine</div>
+              <a href="https://entreprendre.service-public.gouv.fr/actualites/A18564" target="_blank" class="btn-en-savoir">En savoir plus →</a>
+            </div>
+            <div class="contract-card cc-purple">
+              <div class="contract-icon">🤝</div>
+              <h4>CDI Inclusion</h4>
+              <div class="contract-subtitle">Via structures d'insertion (SIAE)</div>
+              <p class="contract-desc">Pour les seniors de 57 ans+ avec freins multiples à l'emploi.</p>
+              <div class="contract-detail">Emploi durable jusqu'à la retraite</div>
+              <div class="contract-detail">Accompagnement social renforcé</div>
+              <div class="contract-detail">24h minimum hebdomadaires</div>
+              <div class="contract-detail">Structures IAE uniquement</div>
+              <a href="https://communaute.inclusion.beta.gouv.fr/forum/cdi-inclusion-tout-ce-que-vous-devez-savoir-123/" target="_blank" class="btn-en-savoir">En savoir plus →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ONGLET SENIOR -->
+      <div id="pane-senior" class="tab-pane">
+        <div class="senior-content">
+          <p class="senior-intro">Vous avez 50 ans et plus ? Voici les dispositifs concrets pour rebondir, vous reconvertir ou accéder à un emploi durable en Savoie.</p>
+          <div class="senior-cols">
+            <div>
+              <div class="senior-col-h">Se former &amp; se reconvertir</div>
+              <div class="senior-item">
+                <span class="senior-item-icon">⚡</span>
+                <div class="senior-item-text">
+                  <h4>Atout Senior — France Travail AURA</h4>
+                  <p>Parcours 4+4 mois : formation certifiante (comptabilité, RH, commerce, logistique…) + immersion en entreprise. Disponible en Savoie.</p>
+                </div>
+              </div>
+              <div class="senior-item">
+                <span class="senior-item-icon">📂</span>
+                <div class="senior-item-text">
+                  <h4>CPF — Compte Personnel de Formation</h4>
+                  <p>Vos droits sont mobilisables pour toute formation certifiante. Accessible sur moncompteformation.gouv.fr.</p>
+                </div>
+              </div>
+              <div class="senior-item">
+                <span class="senior-item-icon">🎓</span>
+                <div class="senior-item-text">
+                  <h4>VAE — Validation des Acquis</h4>
+                  <p>Transformez votre expérience en diplôme reconnu. Réformée en 2023 : moins de 6 mois, avec accompagnement. Sur vae.gouv.fr.</p>
+                </div>
+              </div>
+              <div class="senior-item">
+                <span class="senior-item-icon">🧭</span>
+                <div class="senior-item-text">
+                  <h4>Bilan de Compétences</h4>
+                  <p>Faites le point sur vos compétences et motivations pour définir un projet professionnel. Finançable via CPF.</p>
+                </div>
+              </div>
+              <div class="senior-item">
+                <span class="senior-item-icon">🔧</span>
+                <div class="senior-item-text">
+                  <h4>AFEST — Formation en Situation de Travail</h4>
+                  <p>Apprenez directement sur votre lieu de travail. Valorise votre expérience terrain.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="senior-col-h sch-navy">Trouver un contrat adapté</div>
+              <div class="senior-item si-navy">
+                <span class="senior-item-icon">⭐</span>
+                <div class="senior-item-text">
+                  <h4>CVE — Contrat de Valorisation de l'Expérience</h4>
+                  <p>Nouveau CDI pour les 60 ans+ (ou 57 ans). Sécurisé jusqu'à votre retraite à taux plein. France Travail Savoie vous accompagne.</p>
+                </div>
+              </div>
+              <div class="senior-item si-navy">
+                <span class="senior-item-icon">🔄</span>
+                <div class="senior-item-text">
+                  <h4>CDD de Reconversion</h4>
+                  <p>Nouveau depuis janvier 2026 : accédez à une formation certifiante chez un employeur d'accueil, contrat d'origine suspendu.</p>
+                </div>
+              </div>
+              <div class="senior-item si-navy">
+                <span class="senior-item-icon">🤝</span>
+                <div class="senior-item-text">
+                  <h4>CDI Inclusion (SIAE)</h4>
+                  <p>57 ans+ avec difficultés persistantes : les structures d'insertion proposent un CDI jusqu'à la retraite avec accompagnement renforcé.</p>
+                </div>
+              </div>
+              <div class="senior-item si-navy">
+                <span class="senior-item-icon">⏱️</span>
+                <div class="senior-item-text">
+                  <h4>Retraite Progressive (dès 60 ans)</h4>
+                  <p>Temps partiel (40%-80%) tout en percevant une fraction de votre pension. L'employeur ne peut plus refuser sans motif depuis oct. 2025.</p>
+                </div>
+              </div>
+              <div class="senior-item si-navy">
+                <span class="senior-item-icon">📞</span>
+                <div class="senior-item-text">
+                  <h4>Besoin d'un accompagnement personnalisé ?</h4>
+                  <p>L'équipe Fab'RH Savoie vous oriente. Contact : Régis Gautheron — <a href="/cdn-cgi/l/email-protection#b2c0d5d3c7c6dad7c0dddcf2d3c0d3d79cd4c0" style="color:var(--pink);font-weight:800;"><span class="__cf_email__" data-cfemail="3f4d585e4a4b575a4d50517f5e4d5e5a11594d">[email&#160;protected]</span></a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- DIAGNOSTIC -->
+<div id="diagnostic">
+  <div class="diag-inner">
+    <div class="diag-label" style="color:#FF0068;">Outils gratuits — Savoie</div>
+    <h2 class="diag-h2">Faire son état des lieux</h2>
+    <p class="diag-intro">Trois outils complémentaires, gratuits et accessibles, permettent dès aujourd'hui de mesurer ses pratiques et d'enclencher des actions concrètes.</p>
+
+    <div class="diag-grid">
+      <!-- 01 Diag RH Senior EN PREMIER -->
+      <div class="diag-card">
+        <div class="diag-num">01</div>
+        <span class="diag-tbadge dtb-cyan">⏱ 5 minutes</span>
+        <h3>Diag RH Senior</h3>
+        <p>Développé par l'ANDRH Savoie Mont-Blanc. Formulaire interactif autour de 6 axes : recrutement, compétences, santé, transmission, fin de carrière, dialogue social. Rapport personnalisé généré automatiquement.</p>
+        <div class="diag-footer">
+          <span class="diag-confirm">✓ PDF envoyé par mail</span>
+          <a href="https://forms.gle/MsZVhh8wznzkSTA58" target="_blank" class="btn-acceder">Accéder →</a>
+        </div>
+      </div>
+      <!-- 02 Senior Score -->
+      <div class="diag-card">
+        <div class="diag-num">02</div>
+        <span class="diag-tbadge dtb-yellow">⏱ &lt; 1 heure</span>
+        <h3>Senior Score</h3>
+        <p>Auto-diagnostic sur 8 domaines clés (gouvernance, recrutement, formation, santé…). Score de A à E, aussi lisible qu'un Nutriscore. Guide G.R.A.C.E. avec 100+ bonnes pratiques inclus.</p>
+        <div class="diag-footer">
+          <span class="diag-confirm">✓ Confidentiel &amp; gratuit</span>
+          <a href="https://tg5lszvnv9c.typeform.com/to/iEefZB5d?typeform" target="_blank" class="btn-acceder">Accéder →</a>
+        </div>
+      </div>
+      <!-- 03 ANACT -->
+      <div class="diag-card">
+        <div class="diag-num">03</div>
+        <span class="diag-tbadge dtb-green">⏱ 10 minutes</span>
+        <h3>Questionnaire ANACT</h3>
+        <p>Publié en 2024 par l'Agence nationale pour l'amélioration des conditions de travail. Ancrage santé et prévention de l'usure professionnelle. Guide de 38 pages pour adapter les postes.</p>
+        <div class="diag-footer">
+          <span class="diag-confirm">✓ Guide 38 pages inclus</span>
+          <a href="https://anact.sphinxonline.net/SurveyServer/s/anact/TRAVAIL_SENIORS/questionnaire.htm" target="_blank" class="btn-acceder">Accéder →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="diag-article">
+      <div class="diag-article-text">
+        <h4>📖 Article complet — Fab'RH Savoie</h4>
+        <p>« Faciliter l'emploi des plus de 50 ans : trois outils pour passer du discours à l'action » — Régis Gautheron, Sept. 2025</p>
+      </div>
+      <a href="https://www.fabrh-savoie.fr/post/facilit%C3%A9-l-emploi-des-plus-de-50-ans-trois-outils-pour-passer-du-discours-%C3%A0-l-action" target="_blank" class="btn-lire">Lire l'article →</a>
+    </div>
+  </div>
+</div>
+
+<!-- LABELS SECTION -->
+<div id="labels" style="background:var(--cream);padding:72px 5%;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-label">Engagement volontaire</div>
+    <h2 class="section-h2">S'engager et valoriser sa marque employeur</h2>
+    <p class="section-intro">Labels, chartes et outils pour afficher un engagement concret et attirer les talents seniors.</p>
+    <div class="labels-grid">
+      <div class="label-card">
+        <span class="label-emoji">📜</span>
+        <h4>Charte 50+</h4>
+        <p>Initiative Club Landoy &amp; L'Oréal. 365 entreprises signataires. 10 engagements concrets sur recrutement, formation et lutte contre les stéréotypes.</p>
+        <a href="https://www.clublandoy.com/la-charte-50" target="_blank" class="btn-small">Signer gratuitement →</a>
+      </div>
+      <div class="label-card">
+        <span class="label-emoji">🎯</span>
+        <h4>Senior Score</h4>
+        <p>Auto-diagnostic A→E par Seniors Force Plus. Score sur 8 domaines, confidentiel, guide G.R.A.C.E. avec 100+ bonnes pratiques. Moins d'1 heure.</p>
+        <a href="https://tg5lszvnv9c.typeform.com/to/iEefZB5d?typeform" target="_blank" class="btn-small">Faire le test →</a>
+      </div>
+      <div class="label-card">
+        <span class="label-emoji">🌍</span>
+        <h4>Charte de la Diversité</h4>
+        <p>Engagement transversal incluant la thématique seniors. Signature ouverte à tous les employeurs, avec webinaires de formation tout au long de l'année.</p>
+        <a href="https://www.charte-diversite.com" target="_blank" class="btn-small">En savoir plus →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Emploi <span class="fl-50">50+</span> Savoie</div>
+        <p>Une initiative portée par les acteurs économiques et de l'emploi de Savoie, dans le cadre de la mobilisation nationale pour l'emploi des travailleurs expérimentés.</p>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact &amp; accompagnement</h4>
+        <div class="contact-info">
+          <strong>Régis Gautheron</strong>
+          Chargé d'affaire RH — Antenne de Savoie<br>
+          Agence économique Régionale AURA<br>
+          <a href="tel:0662081595">📞 06 62 08 15 95</a><br>
+          <a href="/cdn-cgi/l/email-protection#5426333521203c31263b3a14352635317a3226">✉ <span class="__cf_email__" data-cfemail="2153464054554944534e4f61405340440f4753">[email&#160;protected]</span></a>
+        </div>
+      </div>
+      <div class="footer-partners">
+        <h4>Partenaires institutionnels</h4>
+        <div class="logos-row">
+          <div class="logo-box"><img src="FT.jpg" alt="France Travail"></div>
+          <div class="logo-box"><img src="APEC.jpg" alt="APEC"></div>
+          <div class="logo-box"><img src="EntrepriseS.jpg" alt="Les Entreprises s'engagent Savoie"></div>
+          <div class="logo-box"><img src="ANDRH.jpg" alt="ANDRH Savoie Mont-Blanc"></div>
+          <div class="logo-box"><img src="ARAE.jpg" alt="La Région AURA Entreprises"></div>
+          <div class="logo-box"><img src="MEDEF.jpg" alt="MEDEF Savoie"></div>
+          <div class="logo-box"><img src="TP.jpg" alt="Transitions Pro AURA"></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 — Emploi 50+ Savoie — Dispositif financé et porté par ARAE Auvergne-Rhône-Alpes Entreprises</p>
+      <div style="display:flex;gap:20px">
+        <a href="https://www.fabrh-savoie.fr" target="_blank">Fab'RH Savoie</a>
+        <a href="#">Mentions légales</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function openTab(tab) {
+  document.getElementById('btn-employer').classList.remove('active');
+  document.getElementById('btn-senior').classList.remove('active');
+  document.getElementById('pane-employer').classList.remove('active');
+  document.getElementById('pane-senior').classList.remove('active');
+  if (tab === 'employer') {
+    document.getElementById('btn-employer').classList.add('active');
+    document.getElementById('pane-employer').classList.add('active');
+  } else {
+    document.
