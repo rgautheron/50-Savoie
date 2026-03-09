@@ -738,13 +738,14 @@
       <p>© 2026 — Emploi 50+ Savoie — Dispositif financé et porté par ARAE Auvergne-Rhône-Alpes Entreprises</p>
       <div style="display:flex;gap:20px">
         <a href="https://www.fabrh-savoie.fr" target="_blank">Fab'RH Savoie</a>
-        <a href="#">Mentions légales</a>
+        <a href="https://www.fabrh-savoie.fr/mentions-legales" target="_blank">Mentions légales</a>
       </div>
     </div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+<script>
 function openTab(tab) {
   document.getElementById('btn-employer').classList.remove('active');
   document.getElementById('btn-senior').classList.remove('active');
@@ -754,4 +755,20 @@ function openTab(tab) {
     document.getElementById('btn-employer').classList.add('active');
     document.getElementById('pane-employer').classList.add('active');
   } else {
-    document.
+    document.getElementById('btn-senior').classList.add('active');
+    document.getElementById('pane-senior').classList.add('active');
+  }
+}
+
+function toggleAcc(item) {
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item').forEach(function(el) {
+    el.classList.remove('open');
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+  }
+}
+</script>
+</body>
+</html>
